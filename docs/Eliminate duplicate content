@@ -1,0 +1,23 @@
+# Eliminate duplicate content (in some unexpected ways)
+
+Google doesn't like it when you have the same content be shown on different pages. You're penalised for it as it's considered  _duplicate content_  and could be seen as a way to artificially increase the size of your site.
+
+But duplicate content is something that's very easy to get, even when you don't promote it. Take for instance the following URLs:
+
+    http://yoursite.tld/page/?search=keyword&page=5&from=homepage
+    http://yoursite.tld/page/?page=5&search=keyword&from=homepage
+    http://yoursite.tld/search/keyword/?page=5
+    ...
+
+Those URLs could all be pointing to the same content: the position of the different URL variables, a clean version of the URL as rewritten by  `.htaccess`  files, ...
+
+For Google, those could look like 3 unique URLs with the same content. That's not good.
+
+These are a lot harder to fix and track down but it should be kept in the back of your mind when developing any new site. If there are multiple URLs to show the same content, either:
+
+-   Set the correct META tags to prevent indexing (`<meta name="robots" content="noindex,follow"/>`)
+-   Force a 301 permanent rewrite to the final URL
+
+For websites that offer a search function this can happen quite a lot: different keywords showing the same results and thus the same content. Because of this, many people add the  `noindex,follow`  headers to search result pages to prevent those from being indexed.
+
+**Update:**  as correctly mentioned in the comments, another way to tackle this problem is by creating  [canonical URLs](https://support.google.com/webmasters/answer/139066?hl=en). This allows you to communicate one URL to search engines where multiple variants of that URL may exist.
